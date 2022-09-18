@@ -1,0 +1,82 @@
+:root {
+  --cor-princpal: #3a3132;
+  --cor-secundaria: #0f4571;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 990px;
+  margin: 0 auto;
+}
+
+body a {
+  text-decoration: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+body ul {
+  list-style: none;
+}
+
+body ul li {
+  display: inline;
+  margin-left: 0.5em;
+}
+
+/* --------------------------- CABEÇALHO ------------------------- */
+
+.cabecalho {
+  background-color: var(--cor-princpal);
+  box-shadow: 10px 0 5px black;
+}
+
+.cabecalho .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 1em 0;
+}
+
+/* --------------------------- PRINCIPAL ------------------------- */
+
+#listaProdutos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin: 2em auto;
+}
+
+#listaProdutos a {
+  background-color: var(--cor-secundaria);
+  padding: 0.5em 1em;
+  border-radius: 5px;
+  margin-top: 50px;
+}
+
+/* --------------------------- FOOOTER ------------------------- */
+.rodape {
+  background-color: var(--cor-secundaria);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
+  padding: 1rem;
+}
+
+.rodape .container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.rodape p {
+  color: #fff;
+  font-weight: bold;
+}
