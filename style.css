@@ -54,11 +54,20 @@ body ul li {
   margin: 2em auto;
 }
 
+#listaProdutos h4 {
+  display: block;
+}
+
+#listaProdutos div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 #listaProdutos a {
   background-color: var(--cor-secundaria);
   padding: 0.5em 1em;
   border-radius: 5px;
-  margin-top: 50px;
 }
 
 /* --------------------------- FOOOTER ------------------------- */
