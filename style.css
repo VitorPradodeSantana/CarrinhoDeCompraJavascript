@@ -89,3 +89,11 @@ body ul li {
   color: #fff;
   font-weight: bold;
 }
+
+/* --------------------------- MAIN (CARRINHO) ------------------------- */
+.mainCarrinho {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  margin: 30vh auto;
+}

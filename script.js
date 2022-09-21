@@ -48,28 +48,15 @@ carregarProdutos()
 
 const btnAdicionar = document.getElementsByClassName('adicionar')
 
-let pegarCarrinho = () => {
-  return localStorage.getItem('Carrinho')
-    ? JSON.parse(localStorage.getItem('Carrinho'))
-    : []
-}
-
-let hasItem = item => {
-  let carrinho = pegarCarrinho()
-  if (!item.idProduto) {
-    return false
-  }
-  return carrinho.some(itemCarrinho => item.idProduto == itemCarrinho.id)
-}
-
 let salvarProdutoCarrinho = item => {
-  let carrinho = pegarCarrinho()
-  if (hasItem(item)) {
-    carrinho.forEach(cartItem => {
-      if (cartItem.idProduto == item.idProduto) {
-        console.log('iguais')
-      }
-    })
+  let verifica = carrinhoDeCompra.findIndex(
+    id => id.idProduto == item.idProduto
+  )
+  if (verifica < 0) {
+    carrinhoDeCompra.push(item)
+    localStorage.setItem('Carrinho', JSON.stringify(carrinhoDeCompra))
+  } else {
+    carrinhoDeCompra.quantidadeProduto++
   }
 }
 
@@ -80,7 +67,7 @@ for (var i = 0; i < btnAdicionar.length; i++) {
     let id = produtos[key].id
     let descricao = produtos[key].descricao
     let tamanho = produtos[key].tamanho
-    let preco = produtos[key].tamanho
+    let preco = produtos[key].preco
     let quantidade = produtos[key].quantidade
 
     const produto = {
@@ -92,5 +79,7 @@ for (var i = 0; i < btnAdicionar.length; i++) {
     }
 
     salvarProdutoCarrinho(produto)
+
+    window.location.href = 'carrinho.html'
   })
 }
