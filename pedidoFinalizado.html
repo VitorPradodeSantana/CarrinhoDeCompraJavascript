@@ -22,9 +22,10 @@
     </header>
 
     <main class="container">
-      <h4>Produtos</h4>
-      <div id="listaProdutos"></div>
-      <p id="avisoItemAdicionado">Item adicionado ao carrinho</p>
+      <div class="divCaminhao">
+        <img id="caminhao" src="./image/caminhao.png" alt="" />
+        <p>Pedido <span id="numeroPedido"></span> a caminho</p>
+      </div>
     </main>
 
     <footer class="rodape">
@@ -36,7 +37,14 @@
         </ul>
       </div>
     </footer>
+    <script>
+      const numeroDoPedido = document.getElementById('numeroPedido')
 
-    <script src="script.js"></script>
+      const gerarNumeroPedido = () => {
+        return Math.floor(Math.random() * 5)
+      }
+
+      numeroDoPedido.innerText = gerarNumeroPedido()
+    </script>
   </body>
 </html>

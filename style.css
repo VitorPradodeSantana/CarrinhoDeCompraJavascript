@@ -7,6 +7,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
+  font-family: 'Courier New', Courier, monospace;
 }
 
 .container {
@@ -18,6 +20,10 @@ body a {
   text-decoration: none;
   color: #fff;
   cursor: pointer;
+}
+
+body a:hover {
+  color: #eff0d5;
 }
 
 body ul {
@@ -46,6 +52,14 @@ body ul li {
 
 /* --------------------------- PRINCIPAL ------------------------- */
 
+main h4 {
+  text-align: center;
+  font-size: 2em;
+  margin-top: 2rem;
+
+  text-transform: uppercase;
+}
+
 #listaProdutos {
   display: flex;
   justify-content: space-between;
@@ -54,20 +68,57 @@ body ul li {
   margin: 2em auto;
 }
 
-#listaProdutos h4 {
-  display: block;
+#listaProdutos img {
+  width: 200px;
+  height: 200px;
 }
 
 #listaProdutos div {
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 20px;
 }
 
 #listaProdutos a {
   background-color: var(--cor-secundaria);
   padding: 0.5em 1em;
   border-radius: 5px;
+
+  margin-top: 5px;
+}
+
+#avisoItemAdicionado {
+  display: none;
+  text-align: center;
+  text-transform: uppercase;
+
+  border: 2px solid rgb(0, 43, 0);
+  background-color: rgb(115, 223, 151);
+
+  color: #fff;
+
+  width: 200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.avisoItemNaoAdicionado{
+  display: none;
+  text-align: center;
+  text-transform: uppercase;
+
+  border: 2px solid rgb(49, 0, 0);
+  background-color: rgb(230, 111, 111);
+
+  color: #fff;
+
+  width: 200px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
 /* --------------------------- FOOOTER ------------------------- */
@@ -93,7 +144,102 @@ body ul li {
 /* --------------------------- MAIN (CARRINHO) ------------------------- */
 .mainCarrinho {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 0.5fr;
+  align-items: flex-start;
 
-  margin: 30vh auto;
+  margin: 10vh auto;
+}
+
+.mainCarrinho h4 {
+  margin: 0 0 !important;
+}
+
+.mainCarrinho hr {
+  width: 200px;
+}
+
+.mainCarrinho .calculoCarrinho {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.mainCarrinho #carrinhoDeCompra div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid;
+  border-radius: 5px;
+
+  width: 70%;
+
+  padding: 10px 10px;
+
+  margin-bottom: 10px;
+}
+
+.mainCarrinho #carrinhoDeCompra div img {
+  width: 50px;
+  height: 50px;
+}
+
+.mainCarrinho #carrinhoDeCompra div input {
+  width: 30px;
+  height: 20px;
+}
+
+.botoesCarrinhoDeCompra {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.botoesCarrinhoDeCompra button {
+  width: auto;
+  margin-bottom: 10px;
+
+  border: none;
+  border-radius: 5px;
+  background-color: var(--cor-secundaria);
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+
+  padding: 1rem 2em;
+  cursor: pointer;
+}
+
+/* --------------------------- FINALIZAÇÃO PEDIDO ------------------------- */
+
+.divCaminhao {
+  width: 700px;
+  margin: 0 auto;
+}
+
+.divCaminhao p {
+  text-align: center;
+}
+
+#caminhao {
+  width: 200px;
+  transition: 0.5s all;
+  animation: movimentarCaminhao 2s infinite;
+}
+
+@keyframes movimentarCaminhao {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(100px);
+  }
+  50% {
+    transform: translateX(200px);
+  }
+  75% {
+    transform: translateX(300px);
+  }
+  100% {
+    transform: translateX(400px);
+  }
 }

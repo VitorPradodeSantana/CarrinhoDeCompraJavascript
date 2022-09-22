@@ -7,6 +7,7 @@
     <title>CARRINHO DE COMPRA</title>
     <link rel="stylesheet" href="style.css" />
   </head>
+
   <body>
     <header class="cabecalho">
       <div class="container">
@@ -14,18 +15,29 @@
 
         <nav>
           <ul>
-            <li><a href="#">HOME</a></li>
-            <li><a href="#">CARRINHO</a></li>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="carrinho.html">CARRINHO</a></li>
           </ul>
         </nav>
       </div>
     </header>
 
-    <main class="container mainCarrinho">
-      <div id="carrinhoDeCompra"></div>
-      <div>
-        <button>Fechar</button
-        ><button id="limparCarrinho">Limpar Carrinho</button>
+    <main class="container">
+      <h4>Carrinho de Compra</h4>
+      <div class="mainCarrinho">
+        <div>
+          <div id="carrinhoDeCompra"></div>
+        </div>
+        <div class="calculoCarrinho">
+          <h4>Calculo do carrinho</h4>
+          <div id="calculoDoPedido"></div>
+          <hr />
+          <span id="valorTotal"></span>
+        </div>
+        <div class="botoesCarrinhoDeCompra">
+          <button id="limparCarrinho">Limpar Carrinho</button>
+          <button id="finalizarVenda">Finalizar</button>
+        </div>
       </div>
     </main>
 
