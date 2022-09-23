@@ -10,11 +10,12 @@ carrinhoLocalStorage.map(item => {
     <div>
 
       <img src="${item.imageProduto}" />
-      <span>${item.idProduto}</span>
       <p>${item.descricaoProduto}</p>
       <p>${item.tamanhoProduto}</p>
       <p>${item.precoProduto}</p>
-      <input type="number" value="${item.quantidadeProduto}" />
+      <i class="fa-solid fa-minus" id="diminuirQuantidade"></i>
+      <input type="text" class="quantidadeProduto" value="${item.quantidadeProduto}" />
+      <i class="fa-solid fa-plus" id="aumentarQuantidade"></i>
       <button class="btnExcluir">excluir</button>
 
     </div>
@@ -57,6 +58,14 @@ for (var i = 0; i < btnExcluirItem.length; i++) {
 }
 
 finalizarVenda.onclick = () => {
+  var elementoCarrinhoDeCompra = carrinhoDeCompra.children[0].children
+
+  console.log(elementoCarrinhoDeCompra)
+
+  for (i = 0; i < elementoCarrinhoDeCompra.length; i++) {
+    console.log(elementoCarrinhoDeCompra[4].value)
+  }
+
   location.href = 'pedidoFinalizado.html'
 }
 

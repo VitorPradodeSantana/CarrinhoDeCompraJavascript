@@ -1,6 +1,6 @@
 const produtos = [
   {
-    image: './image/imagemFake.png',
+    image: './image/imagemFake.jpg',
     id: 0,
     descricao: 'camiseta balmain',
     preco: 50.0,
@@ -8,7 +8,7 @@ const produtos = [
     quantidade: 0
   },
   {
-    image: './image/imagemFake.png',
+    image: './image/imagemFake.jpg',
     id: 1,
     descricao: 'camiseta nike',
     preco: 60.0,
@@ -16,7 +16,7 @@ const produtos = [
     quantidade: 0
   },
   {
-    image: './image/imagemFake.png',
+    image: './image/imagemFake.jpg',
     id: 2,
     descricao: 'camiseta adidas',
     preco: 80.0,
@@ -44,11 +44,12 @@ const carregarProdutos = () => {
       <div id="item">
 
         <img src="${produto.image}" />
-        <span id="id">${produto.id}</span>
-        <p id="descricao">${produto.descricao}</p>
-        <p id="tamanho">${produto.tamanho}
-        <p id="preco">${produto.preco}</p>
-        <a href="#" class="adicionar" key=${produto.id}>adicionar</a>
+        <div class="informacoesProduto">
+          <p id="descricao">${produto.descricao}</p>
+          <p id="tamanho">${produto.tamanho}</p>
+          <p id="preco">R$ ${produto.preco}.00</p>
+          <a href="#" class="adicionar" key=${produto.id}>adicionar</a>
+        </div>
 
       </div>
 
@@ -73,9 +74,8 @@ let salvarProdutoCarrinho = item => {
     }, 1000)
   } else {
     avisoItemAdicionado.innerText = `Item já existe no carrinho de compra`
-    avisoItemAdicionado.classList.remove('avisoItemNaoAdicionado')
-    avisoItemAdicionado.classList.add('avisoItemNaoAdicionado')
-
+    avisoItemAdicionado.style.border = '1px solid rgb(49, 0, 0)'
+    avisoItemAdicionado.style.background = 'rgb(230, 111, 111)'
     avisoItemAdicionado.style.display = 'block'
 
     setTimeout(() => {

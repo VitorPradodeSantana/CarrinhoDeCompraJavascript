@@ -16,6 +16,10 @@
   margin: 0 auto;
 }
 
+body {
+  background-color: aliceblue;
+}
+
 body a {
   text-decoration: none;
   color: #fff;
@@ -69,26 +73,62 @@ main h4 {
 }
 
 #listaProdutos img {
-  width: 200px;
+  width: 280px;
   height: 200px;
+  border-radius: 10px 10px 0 0;
+
+  box-sizing: border-box;
 }
 
-#listaProdutos div {
+#listaProdutos #item {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
 
-  border: 1px solid black;
-  border-radius: 5px;
-  padding: 20px;
+  border: none;
+  border-radius: 10px;
+
+  box-shadow: 1px 1px 5px black;
+  background-color: #fff;
+}
+
+#listaProdutos div .informacoesProduto {
+  display: flex;
+  flex-direction: column;
+
+  border: none;
+  padding: 0 10px;
+  margin: 10px 0;
+}
+
+#listaProdutos .informacoesProduto #descricao {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1.2em;
+
+  color: #5c5859;
+}
+
+#listaProdutos .informacoesProduto #tamanho {
+  text-transform: uppercase;
+  font-size: 1.2rem;
+}
+
+#listaProdutos .informacoesProduto #preco {
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #353535;
 }
 
 #listaProdutos a {
   background-color: var(--cor-secundaria);
   padding: 0.5em 1em;
   border-radius: 5px;
+  text-transform: uppercase;
 
   margin-top: 5px;
+  width: 120px;
 }
 
 #avisoItemAdicionado {
@@ -98,21 +138,6 @@ main h4 {
 
   border: 2px solid rgb(0, 43, 0);
   background-color: rgb(115, 223, 151);
-
-  color: #fff;
-
-  width: 200px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.avisoItemNaoAdicionado{
-  display: none;
-  text-align: center;
-  text-transform: uppercase;
-
-  border: 2px solid rgb(49, 0, 0);
-  background-color: rgb(230, 111, 111);
 
   color: #fff;
 
@@ -141,10 +166,14 @@ main h4 {
   font-weight: bold;
 }
 
+.rodape #amor {
+  color: red;
+}
+
 /* --------------------------- MAIN (CARRINHO) ------------------------- */
 .mainCarrinho {
   display: grid;
-  grid-template-columns: 1fr 1fr 0.5fr;
+  grid-template-columns: 1.2fr 1.3fr 0.5fr;
   align-items: flex-start;
 
   margin: 10vh auto;
@@ -161,21 +190,47 @@ main h4 {
 .mainCarrinho .calculoCarrinho {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+
+  justify-self: center;
+  font-weight: bold;
+}
+
+.mainCarrinho .calculoCarrinho #calculoDoPedido {
+  margin-top: 25px;
+  margin-bottom: 5px;
+  border-bottom: 4px dotted #000;
+  width: 150px;
+}
+
+.mainCarrinho .botoesCarrinhoDeCompra {
+  align-self: center;
 }
 
 .mainCarrinho #carrinhoDeCompra div {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid;
+  border: none;
   border-radius: 5px;
-
-  width: 70%;
+  box-shadow: 1px 1px 1px 2px #919191;
 
   padding: 10px 10px;
 
   margin-bottom: 10px;
+
+  text-transform: uppercase;
+  font-weight: bold;
+
+  background-color: #fff;
+}
+
+.mainCarrinho #carrinhoDeCompra div button {
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  background-color: red;
+  color: #fff;
+  text-transform: uppercase;
 }
 
 .mainCarrinho #carrinhoDeCompra div img {
@@ -209,6 +264,14 @@ main h4 {
   cursor: pointer;
 }
 
+.botoesCarrinhoDeCompra button:hover {
+  color: #eff0d5;
+}
+
+.mainCarrinho #carrinhoDeCompra i {
+  cursor: pointer;
+}
+
 /* --------------------------- FINALIZAÇÃO PEDIDO ------------------------- */
 
 .divCaminhao {
@@ -222,7 +285,7 @@ main h4 {
 
 #caminhao {
   width: 200px;
-  transition: 0.5s all;
+  transition: 1s all;
   animation: movimentarCaminhao 2s infinite;
 }
 
