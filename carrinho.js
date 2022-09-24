@@ -4,6 +4,17 @@ const limparCarrinho = document.getElementById('limparCarrinho')
 const valorTotalCarrinho = document.getElementById('valorTotal')
 const finalizarVenda = document.getElementById('finalizarVenda')
 const calculoDoPedido = document.getElementById('calculoDoPedido')
+let carrinhodeCompra = []
+
+let salvarProdutoCarrinho = item => {
+  let verifica = carrinhodeCompra.findIndex(
+    id => id.idProduto == item.idProduto
+  )
+  if (verifica < 0) {
+    carrinhodeCompra.push(item)
+    localStorage.setItem('Carrinho', JSON.stringify(carrinhodeCompra))
+  }
+}
 
 carrinhoLocalStorage.map(item => {
   carrinho.innerHTML += `
@@ -13,21 +24,15 @@ carrinhoLocalStorage.map(item => {
       <p>${item.descricaoProduto}</p>
       <p>${item.tamanhoProduto}</p>
       <p>${item.precoProduto}</p>
+      <span class="idProduto">${item.idProduto}</span>
       <i class="fa-solid fa-minus" id="diminuirQuantidade"></i>
-      <input type="text" class="quantidadeProduto" value="${item.quantidadeProduto}" />
+      <input type="number" class="quantidadeProduto" value="${item.quantidadeProduto}" />
       <i class="fa-solid fa-plus" id="aumentarQuantidade"></i>
       <button class="btnExcluir">excluir</button>
 
     </div>
   `
 })
-
-let somaValorTotal = carrinhoLocalStorage.reduce(
-  (soma, atual) => soma + atual.precoProduto,
-  0
-)
-
-valorTotalCarrinho.innerHTML = `Total -> ${somaValorTotal}`
 
 limparCarrinho.addEventListener('click', () => {
   localStorage.clear()
@@ -41,7 +46,7 @@ for (var i = 0; i < btnExcluirItem.length; i++) {
   btnExcluirItem[i].addEventListener('click', e => {
     let item = e.target.parentNode
 
-    let indice = parseInt(item.children[1].innerHTML)
+    let indice = parseInt(item.children[1].innerHTML - 1)
 
     carrinhoLocalStorage.splice(indice, 1)
 
@@ -57,18 +62,6 @@ for (var i = 0; i < btnExcluirItem.length; i++) {
   })
 }
 
-finalizarVenda.onclick = () => {
-  var elementoCarrinhoDeCompra = carrinhoDeCompra.children[0].children
-
-  console.log(elementoCarrinhoDeCompra)
-
-  for (i = 0; i < elementoCarrinhoDeCompra.length; i++) {
-    console.log(elementoCarrinhoDeCompra[4].value)
-  }
-
-  location.href = 'pedidoFinalizado.html'
-}
-
 carrinhoLocalStorage.map(item => {
   calculoDoPedido.innerHTML += `
     <div>
@@ -78,3 +71,54 @@ carrinhoLocalStorage.map(item => {
     </div>
   `
 })
+
+let divCarrinhoDeCompra = carrinhoDeCompra.children
+
+console.log(divCarrinhoDeCompra)
+
+for (i = 0; i < divCarrinhoDeCompra.length; i++) {
+  divCarrinhoDeCompra[i].children[7].onclick = e => {
+    let alvo = e.target.parentNode.children[4].innerHTML
+    let quantidadeProduto = document.getElementsByClassName('quantidadeProduto')
+    let valorInteiroQuantidade = quantidadeProduto[alvo]
+    valorInteiroQuantidade.value++
+  }
+
+  divCarrinhoDeCompra[i].children[5].onclick = e => {
+    let alvo = e.target.parentNode.children[4].innerHTML
+    let quantidadeProduto = document.getElementsByClassName('quantidadeProduto')
+    let valorInteiroQuantidade = quantidadeProduto[alvo]
+    valorInteiroQuantidade.value--
+  }
+}
+
+finalizarVenda.onclick = () => {
+  for (i = 0; i < divCarrinhoDeCompra.length; i++) {
+    let img = divCarrinhoDeCompra[i].children[0].getAttribute('src')
+    let descricao = divCarrinhoDeCompra[i].children[1].innerHTML
+    let tamanho = divCarrinhoDeCompra[i].children[2].innerHTML
+    let preco = divCarrinhoDeCompra[i].children[3].innerHTML
+    let id = divCarrinhoDeCompra[i].children[4].innerHTML
+    let quantidade = parseInt(divCarrinhoDeCompra[i].children[6].value)
+
+    const produto = {
+      imageProduto: img,
+      idProduto: id,
+      descricaoProduto: descricao,
+      tamanhoProduto: tamanho,
+      precoProduto: preco,
+      quantidadeProduto: quantidade
+    }
+
+    salvarProdutoCarrinho(produto)
+  }
+
+  let somaValorTotal = carrinhoLocalStorage.reduce(
+    (soma, atual) => soma + atual.quantidadeProduto * atual.precoProduto,
+    0
+  )
+
+  valorTotalCarrinho.innerHTML = `Total -> ${somaValorTotal}`
+
+  /*location.href = 'pedidoFinalizado.html'*/
+}
